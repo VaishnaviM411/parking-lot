@@ -12,4 +12,9 @@ class Spot {
 
     fun isAvailable() = vehicle == null
     fun getSpotNumber() = spotNumber
+
+    fun getVehicle() = vehicle
+    fun unBook() {
+        this.vehicle = null
+    }
 }

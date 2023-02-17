@@ -17,4 +17,18 @@ class ParkingLot(val numberOfSpots: Int) {
         }
         return null
     }
+
+    fun getSpotByVehicle(vehicle: Vehicle): Spot? {
+        spots.forEach { if (it.getVehicle() == vehicle) return it }
+        return null
+    }
+
+    fun getSpotBySpotNumber(spotNumber: Int): Spot? {
+        spots.forEach { if (it.getSpotNumber() == spotNumber) return it }
+        return null
+    }
+
+    fun increaseAvailableSpots() {
+        numberOfAvailableSpots++
+    }
 }

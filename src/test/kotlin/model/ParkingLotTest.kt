@@ -35,4 +35,6 @@ class ParkingLotTest {
 
         assertEquals(1, response?.getSpotNumber())
     }
+
+
 }
