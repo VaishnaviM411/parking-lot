@@ -1,5 +1,6 @@
 package model
 
+import DUMMY_FEE
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import stub.DummyFeeCalculator
@@ -18,6 +19,6 @@ class ReceiptTest {
         assertEquals(1,receipt.getSpotNumber())
         assertEquals(entryDateTime, receipt.getEntryDateTime())
         assertEquals(exitDateTime, receipt.getExitDateTime())
-        assertEquals(40, receipt.getFee())
+        assertEquals(DUMMY_FEE, receipt.getFee())
     }
 }
