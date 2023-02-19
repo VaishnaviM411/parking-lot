@@ -16,7 +16,7 @@ class ReceiptTest {
 
         val receipt = Receipt(ticket, exitDateTime, dummyFeeCalculator)
 
-        assertEquals(1,receipt.getSpotNumber())
+        assertEquals(1, receipt.getSpotNumber())
         assertEquals(entryDateTime, receipt.getEntryDateTime())
         assertEquals(exitDateTime, receipt.getExitDateTime())
         assertEquals(DUMMY_FEE, receipt.getFee())
