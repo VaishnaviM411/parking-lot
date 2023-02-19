@@ -10,4 +10,6 @@ class TicketCollection {
     }
 
     fun getTicket(ticketNumber: Int) = tickets[ticketNumber]
+
+    fun getTicketNumber() = tickets.size
 }

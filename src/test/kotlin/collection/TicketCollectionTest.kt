@@ -27,4 +27,13 @@ class TicketCollectionTest {
 
         assertEquals(response, ticket)
     }
+
+    @Test
+    fun `It should generate ticket number for new ticket`() {
+        val ticketCollection = TicketCollection()
+
+        val ticketNumber = ticketCollection.getTicketNumber()
+
+        assertEquals(0, ticketNumber)
+    }
 }
