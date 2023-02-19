@@ -1,6 +1,6 @@
 package model
 
-import FEE_PER_HOUR
+import CAR_FEE_PER_HOUR
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.time.LocalDateTime
@@ -14,6 +14,6 @@ class FeeCalculatorTest {
 
         val response = feeCalculator.calculate(entryDateTime, exitDateTime)
 
-        assertEquals(2 * FEE_PER_HOUR, response)
+        assertEquals(2 * CAR_FEE_PER_HOUR, response)
     }
 }
