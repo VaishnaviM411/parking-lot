@@ -3,20 +3,8 @@ package model
 import error.SpotNotAvailableError
 import exception.SpotNotFoundInParkingLotException
 
-class ParkingLot(val numberOfSpots: Int) {
-    var spots = MutableList(numberOfSpots) { Spot() }
-    private var numberOfAvailableSpots = numberOfSpots
-
-    fun isSpotAvailable() = numberOfAvailableSpots > 0
-
-    fun isSpotAvailable(spot: Spot): Boolean {
-        spots.forEach { if (it.getSpotNumber() == spot.getSpotNumber()) return it.isAvailable() }
-        return false
-    }
-
-    fun decreaseAvailableSpots() {
-        numberOfAvailableSpots--
-    }
+class ParkingLot(numberOfSpots: Int) {
+    private var spots = MutableList(numberOfSpots) { Spot() }
 
     fun getNextAvailableSpot(): Spot {
         return spots.find { it.isAvailable() } ?: throw SpotNotAvailableError()
