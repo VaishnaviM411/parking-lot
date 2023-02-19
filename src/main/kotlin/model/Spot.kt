@@ -1,5 +1,7 @@
 package model
 
+import error.VehicleNotFoundError
+
 var spotNumberCounter = 1
 
 class Spot {
@@ -18,5 +20,5 @@ class Spot {
         this.vehicle = null
     }
 
-    fun getVehicle() = vehicle
+    fun getVehicle() = vehicle ?: throw VehicleNotFoundError()
 }

@@ -1,6 +1,9 @@
 package model
 
-import org.junit.jupiter.api.Assertions.*
+import error.VehicleNotFoundError
+import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 
 class SpotTest {
@@ -43,5 +46,23 @@ class SpotTest {
 
         assertEquals(true, spot.isAvailable())
         assertNull(spot.getVehicle())
+    }
+
+    @Test
+    fun `It should return vehicle at that spot`() {
+        val spot = Spot()
+        val vehicle = Vehicle()
+        spot.book(vehicle)
+
+        val response = spot.getVehicle()
+
+        assertEquals(vehicle, response)
+    }
+
+    @Test
+    fun `It should throw error if vehicle is not found at that spot`() {
+        val spot = Spot()
+
+        assertThrows(VehicleNotFoundError::class.java){ spot.getVehicle() }
     }
 }
