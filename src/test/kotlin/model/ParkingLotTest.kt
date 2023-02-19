@@ -1,5 +1,6 @@
 package model
 
+import collection.TicketCollection
 import error.SpotAlreadyEmptyError
 import error.SpotNotAvailableError
 import exception.SpotNotFoundInParkingLotException
@@ -8,9 +9,11 @@ import org.junit.jupiter.api.Test
 
 class ParkingLotTest {
 
+    private val dummyTicketCollection = TicketCollection()
+
     @Test
     fun `It should return spot when available`() {
-        val parkingLot = ParkingLot(100)
+        val parkingLot = ParkingLot(100, dummyTicketCollection)
 
         val response = parkingLot.getNextAvailableSpot()
 
@@ -19,7 +22,7 @@ class ParkingLotTest {
 
     @Test
     fun `It should throw error when spot is not available`() {
-        val parkingLot = ParkingLot(100)
+        val parkingLot = ParkingLot(100, dummyTicketCollection)
         for (spot in 1..100) {
             val spotInParkingLot = parkingLot.getNextAvailableSpot()
             parkingLot.park(spotInParkingLot)
@@ -30,7 +33,7 @@ class ParkingLotTest {
 
     @Test
     fun `It should park a vehicle when spot is available & return Ticket`() {
-        val parkingLot = ParkingLot(100)
+        val parkingLot = ParkingLot(100, dummyTicketCollection)
         val spot = parkingLot.getNextAvailableSpot()
 
         val ticket = parkingLot.park(spot)
@@ -41,7 +44,7 @@ class ParkingLotTest {
 
     @Test
     fun `It should throw exception if spot is not found in parkingLot`() {
-        val parkingLot = ParkingLot(100)
+        val parkingLot = ParkingLot(100, dummyTicketCollection)
         val spot = Spot(101)
 
         assertThrows(SpotNotFoundInParkingLotException::class.java) { parkingLot.park(spot) }
@@ -49,7 +52,7 @@ class ParkingLotTest {
 
     @Test
     fun `It should unpark a vehicle from given spot & return receipt (only 1 spot is occupied)`() {
-        val parkingLot = ParkingLot(100)
+        val parkingLot = ParkingLot(100, dummyTicketCollection)
         val spot = parkingLot.getNextAvailableSpot()
         val ticket = parkingLot.park(spot)
 
@@ -61,8 +64,8 @@ class ParkingLotTest {
 
     @Test
     fun `It should not unpark spot that is already empty`() {
-        val parkingLot = ParkingLot(100)
-        val ticket = Ticket(1)
+        val parkingLot = ParkingLot(100, dummyTicketCollection)
+        val ticket = Ticket(1, ticketCollection = dummyTicketCollection)
 
         assertThrows(SpotAlreadyEmptyError::class.java) { parkingLot.unpark(ticket) }
     }

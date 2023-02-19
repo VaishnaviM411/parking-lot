@@ -1,9 +1,10 @@
 package model
 
+import collection.TicketCollection
 import error.SpotNotAvailableError
 import exception.SpotNotFoundInParkingLotException
 
-class ParkingLot(numberOfSpots: Int) {
+class ParkingLot(numberOfSpots: Int, private val ticketCollection: TicketCollection) {
     private val spots = mutableListOf<Spot>()
 
     init {
@@ -22,7 +23,7 @@ class ParkingLot(numberOfSpots: Int) {
 
         spotInParkingLot.book(Vehicle())
 
-        return Ticket(spotInParkingLot.getSpotNumber())
+        return Ticket(spotInParkingLot.getSpotNumber(), ticketCollection = ticketCollection)
     }
 
     fun unpark(ticket: Ticket): Receipt {

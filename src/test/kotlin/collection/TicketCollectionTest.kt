@@ -8,7 +8,7 @@ class TicketCollectionTest {
     @Test
     fun `It should add ticket to collection`() {
         val ticketCollection = TicketCollection()
-        val ticket = Ticket(1)
+        val ticket = Ticket(1, ticketCollection = ticketCollection)
         val ticketNumber = 0
 
         ticketCollection.add(ticket)
@@ -19,7 +19,7 @@ class TicketCollectionTest {
     @Test
     fun `It should return ticket of given ticket number`() {
         val ticketCollection = TicketCollection()
-        val ticket = Ticket(1)
+        val ticket = Ticket(1, ticketCollection = TicketCollection())
         val ticketNumber = 0
         ticketCollection.add(ticket)
 

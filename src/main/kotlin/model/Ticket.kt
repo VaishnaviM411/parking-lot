@@ -1,9 +1,15 @@
 package model
 
+import collection.TicketCollection
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class Ticket(private val spotNumber: Int, private val entryDateTime: LocalDateTime = LocalDateTime.now()) {
+class Ticket(private val spotNumber: Int, private val entryDateTime: LocalDateTime = LocalDateTime.now(), ticketCollection: TicketCollection) {
+
+    init {
+        ticketCollection.add(this)
+    }
+
     fun getSpotNumber() = spotNumber
 
     fun getEntryDateTime() = entryDateTime
