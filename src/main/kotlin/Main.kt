@@ -1,7 +1,6 @@
 import model.ParkingLot
 import model.Ticket
 import java.time.LocalDateTime
-import java.util.UUID.randomUUID
 
 fun main() {
     val parkingLot = ParkingLot(NUMBER_OF_SPOTS)
@@ -29,8 +28,8 @@ fun main() {
 
             2 -> {
                 println("Enter spot number: ")
-//                var spotNumber = readln().toInt()
-                val spotNumber = randomUUID()
+                val spotNumber = readln().toInt()
+//                val spotNumber = randomUUID()
                 val ticket = Ticket(spotNumber, LocalDateTime.now().minusHours(4))
                 val receipt = parkingLot.unpark(ticket)
                 println(receipt)

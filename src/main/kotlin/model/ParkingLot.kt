@@ -4,7 +4,13 @@ import error.SpotNotAvailableError
 import exception.SpotNotFoundInParkingLotException
 
 class ParkingLot(numberOfSpots: Int) {
-    private val spots = MutableList(numberOfSpots) { Spot() }
+    private val spots = mutableListOf<Spot>()
+
+    init {
+        for (spotNumber in 1..numberOfSpots) {
+            spots.add(Spot(spotNumber))
+        }
+    }
 
     fun getNextAvailableSpot(): Spot {
         return spots.find { it.isAvailable() } ?: throw SpotNotAvailableError()

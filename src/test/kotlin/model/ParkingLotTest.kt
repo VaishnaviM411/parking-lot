@@ -41,7 +41,7 @@ class ParkingLotTest {
     @Test
     fun `It should throw exception if spot is not found in parkingLot`() {
         val parkingLot = ParkingLot(100)
-        val spot = Spot()
+        val spot = Spot(101)
 
         assertThrows(SpotNotFoundInParkingLotException::class.java) { parkingLot.park(spot) }
     }
