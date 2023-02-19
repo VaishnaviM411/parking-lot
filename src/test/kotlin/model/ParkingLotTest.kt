@@ -1,5 +1,6 @@
 package model
 
+import error.SpotAlreadyEmptyError
 import error.SpotNotAvailableError
 import exception.SpotNotFoundInParkingLotException
 import org.junit.jupiter.api.Assertions.*
@@ -56,5 +57,13 @@ class ParkingLotTest {
 
         assertEquals(spot.getSpotNumber(), receipt.getSpotNumber())
         assertEquals(spot, parkingLot.getNextAvailableSpot())
+    }
+
+    @Test
+    fun `It should not unpark spot that is already empty`() {
+        val parkingLot = ParkingLot(100)
+        val ticket = Ticket(1)
+
+        assertThrows(SpotAlreadyEmptyError::class.java) { parkingLot.unpark(ticket) }
     }
 }

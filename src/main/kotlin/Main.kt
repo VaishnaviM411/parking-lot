@@ -30,7 +30,9 @@ fun main() {
                 try {
                     println("Enter spot number: ")
                     val spotNumber = readln().toInt()
-                    val ticket = Ticket(spotNumber, LocalDateTime.now().minusHours(4))
+                    println("Enter entry date time")
+                    val entryDateTime = LocalDateTime.parse(readln())
+                    val ticket = Ticket(spotNumber, entryDateTime)
                     val receipt = parkingLot.unpark(ticket)
                     println(receipt.toString())
                 } catch (error: Error) {
