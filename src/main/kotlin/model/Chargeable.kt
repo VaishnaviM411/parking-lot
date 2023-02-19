@@ -1,5 +1,7 @@
 package model
 
+import java.time.LocalDateTime
+
 interface Chargeable {
-    fun calculate(hours: Long): Long
+    fun calculate(entryDateTime: LocalDateTime, exitDateTime: LocalDateTime): Long
 }
