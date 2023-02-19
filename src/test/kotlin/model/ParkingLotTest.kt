@@ -1,5 +1,6 @@
 package model
 
+import error.SpotNotAvailableError
 import exception.SpotNotFoundInParkingLotException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -35,18 +36,24 @@ class ParkingLotTest {
 
         val response = parkingLot.getNextAvailableSpot()
 
-        assertEquals(1, response?.getSpotNumber())
+        assertEquals(1, response.getSpotNumber())
     }
 
     @Test
     fun `It should throw error when spot is not available`() {
-        //to do
+        val parkingLot = ParkingLot(100)
+        parkingLot.spots.forEach {
+            it.book(Vehicle())
+            parkingLot.decreaseAvailableSpots()
+        }
+
+        assertThrows(SpotNotAvailableError::class.java) { parkingLot.getNextAvailableSpot() }
     }
 
     @Test
     fun `It should park a vehicle when spot is available & return Ticket`() {
         val parkingLot = ParkingLot(100)
-        val spot = parkingLot.getNextAvailableSpot()!!
+        val spot = parkingLot.getNextAvailableSpot()
 
         val ticket = parkingLot.park(spot)
 

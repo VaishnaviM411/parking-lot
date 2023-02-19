@@ -1,5 +1,6 @@
 package model
 
+import error.SpotNotAvailableError
 import exception.SpotNotFoundInParkingLotException
 
 class ParkingLot(val numberOfSpots: Int) {
@@ -17,11 +18,8 @@ class ParkingLot(val numberOfSpots: Int) {
         numberOfAvailableSpots--
     }
 
-    fun getNextAvailableSpot(): Spot? {
-        spots.forEach {
-            if (it.isAvailable()) return it
-        }
-        return null
+    fun getNextAvailableSpot(): Spot {
+        return spots.find { it.isAvailable() } ?: throw SpotNotAvailableError()
     }
 
     fun park(spot: Spot): Ticket {
