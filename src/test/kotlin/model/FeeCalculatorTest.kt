@@ -1,5 +1,6 @@
 package model
 
+import FEE_PER_HOUR
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -11,6 +12,6 @@ class FeeCalculatorTest {
 
         val response = feeCalculator.calculate(hours)
 
-        assertEquals(40, response)
+        assertEquals(hours * FEE_PER_HOUR, response)
     }
 }

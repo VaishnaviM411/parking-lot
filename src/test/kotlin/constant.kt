@@ -1,1 +1,0 @@
-const val DUMMY_FEE = 100L
