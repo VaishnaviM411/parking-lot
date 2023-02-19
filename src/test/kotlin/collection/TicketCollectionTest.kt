@@ -15,4 +15,16 @@ class TicketCollectionTest {
 
         assertEquals(ticket, ticketCollection.getTicket(ticketNumber))
     }
+
+    @Test
+    fun `It should return ticket of given ticket number`() {
+        val ticketCollection = TicketCollection()
+        val ticket = Ticket(1)
+        val ticketNumber = 0
+        ticketCollection.add(ticket)
+
+        val response = ticketCollection.getTicket(ticketNumber)
+
+        assertEquals(response, ticket)
+    }
 }
