@@ -50,4 +50,16 @@ class ParkingLotTest {
 
         assertThrows(SpotNotFoundInParkingLotException::class.java) { parkingLot.park(spot) }
     }
+
+    @Test
+    fun `It should unpark a vehicle from given spot & return receipt (only 1 spot is occupied)`() {
+        val parkingLot = ParkingLot(100)
+        val spot = parkingLot.getNextAvailableSpot()
+        val ticket = parkingLot.park(spot)
+
+        val receipt = parkingLot.unpark(ticket)
+
+        assertEquals(spot.getSpotNumber(), receipt.getSpotNumber())
+        assertEquals(spot, parkingLot.getNextAvailableSpot())
+    }
 }
