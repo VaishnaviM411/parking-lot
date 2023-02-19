@@ -1,10 +1,17 @@
 package model
 
+import exception.SpotNotFoundInParkingLotException
+
 class ParkingLot(val numberOfSpots: Int) {
-    var spots = MutableList(100) { Spot() }
+    var spots = MutableList(numberOfSpots) { Spot() }
     private var numberOfAvailableSpots = numberOfSpots
 
     fun isSpotAvailable() = numberOfAvailableSpots > 0
+
+    fun isSpotAvailable(spot: Spot): Boolean {
+        spots.forEach { if (it.getSpotNumber() == spot.getSpotNumber()) return it.isAvailable() }
+        return false
+    }
 
     fun decreaseAvailableSpots() {
         numberOfAvailableSpots--
@@ -12,23 +19,18 @@ class ParkingLot(val numberOfSpots: Int) {
 
     fun getNextAvailableSpot(): Spot? {
         spots.forEach {
-            if (it.isAvailable())
-                return it
+            if (it.isAvailable()) return it
         }
         return null
     }
 
-    fun getSpotByVehicle(vehicle: Vehicle): Spot? {
-        spots.forEach { if (it.getVehicle() == vehicle) return it }
-        return null
-    }
+    fun park(spot: Spot): Ticket {
+        val spotInParkingLot =
+            spots.find { it.getSpotNumber() == spot.getSpotNumber() }
+                ?: throw SpotNotFoundInParkingLotException()
 
-    fun getSpotBySpotNumber(spotNumber: Int): Spot? {
-        spots.forEach { if (it.getSpotNumber() == spotNumber) return it }
-        return null
-    }
+        spotInParkingLot.book(Vehicle())
 
-    fun increaseAvailableSpots() {
-        numberOfAvailableSpots++
+        return Ticket(spot.getSpotNumber())
     }
 }

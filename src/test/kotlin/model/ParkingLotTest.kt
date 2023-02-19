@@ -1,7 +1,9 @@
 package model
 
+import exception.SpotNotFoundInParkingLotException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.assertThrows
 
 class ParkingLotTest {
     @Test
@@ -36,5 +38,27 @@ class ParkingLotTest {
         assertEquals(1, response?.getSpotNumber())
     }
 
+    @Test
+    fun `It should throw error when spot is not available`() {
+        //to do
+    }
 
+    @Test
+    fun `It should park a vehicle when spot is available & return Ticket`() {
+        val parkingLot = ParkingLot(100)
+        val spot = parkingLot.getNextAvailableSpot()!!
+
+        val ticket = parkingLot.park(spot)
+
+        assertEquals(spot.getSpotNumber(), ticket.getSpotNumber())
+        assertEquals(false, parkingLot.isSpotAvailable(spot))
+    }
+
+    @Test
+    fun `It should throw exception if spot is not found in parkingLot`() {
+        val parkingLot = ParkingLot(100)
+        val spot = Spot()
+
+        assertThrows(SpotNotFoundInParkingLotException::class.java) { parkingLot.park(spot) }
+    }
 }
