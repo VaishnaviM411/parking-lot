@@ -8,7 +8,7 @@ class Receipt(
     feeCalculator: Chargeable = FeeCalculator()
 ) {
     private val spotNumber = ticket.getSpotNumber()
-    private var entryDateTime = ticket.getEntryDateTime()
+    private val entryDateTime = ticket.getEntryDateTime()
     private val fee = feeCalculator.calculate(entryDateTime, exitDateTime)
 
     fun getSpotNumber() = spotNumber
