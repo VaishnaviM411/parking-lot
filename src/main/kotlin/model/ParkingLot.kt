@@ -1,6 +1,5 @@
 package model
 
-import error.SpotAlreadyEmptyError
 import error.SpotNotAvailableError
 import exception.SpotNotFoundInParkingLotException
 
@@ -29,10 +28,6 @@ class ParkingLot(numberOfSpots: Int) {
     fun unpark(ticket: Ticket): Receipt {
         val spotInParkingLot =
             spots.find { it.getSpotNumber() == ticket.getSpotNumber() } ?: throw SpotNotFoundInParkingLotException()
-
-        if (spotInParkingLot.isAvailable()) {
-            throw SpotAlreadyEmptyError()
-        }
 
         spotInParkingLot.unbook()
 

@@ -1,5 +1,6 @@
 package model
 
+import error.SpotAlreadyEmptyError
 import error.VehicleNotFoundError
 
 class Spot(private val spotNumber: Int) {
@@ -14,6 +15,10 @@ class Spot(private val spotNumber: Int) {
     fun getSpotNumber() = spotNumber
 
     fun unbook() {
+        if (this.isAvailable()) {
+            throw SpotAlreadyEmptyError()
+        }
+
         this.vehicle = null
     }
 
