@@ -18,7 +18,7 @@ fun main() {
                 try {
                     val spot = parkingLot.getNextAvailableSpot()
                     val ticket = parkingLot.park(spot)
-                    println(ticket)
+                    println(ticket.toString())
                 } catch (error: Error) {
                     println(error)
                 } catch (exception: Exception) {
@@ -32,7 +32,7 @@ fun main() {
                     val spotNumber = readln().toInt()
                     val ticket = Ticket(spotNumber, LocalDateTime.now().minusHours(4))
                     val receipt = parkingLot.unpark(ticket)
-                    println(receipt)
+                    println(receipt.toString())
                 } catch (error: Error) {
                     println(error)
                 } catch (exception: Exception) {

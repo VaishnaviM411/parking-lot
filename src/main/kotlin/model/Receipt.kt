@@ -1,6 +1,7 @@
 package model
 
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class Receipt(
     ticket: Ticket,
@@ -18,4 +19,14 @@ class Receipt(
     fun getExitDateTime() = exitDateTime
 
     fun getFee() = fee
+
+    override fun toString(): String {
+        return """
+            Receipt\n
+            Spot number: $spotNumber\n
+            Entry time: ${entryDateTime.format(DateTimeFormatter.ISO_DATE)}\n
+            Exit time: ${exitDateTime.format(DateTimeFormatter.ISO_DATE)}\n
+            Fee: $fee
+        """.trimIndent()
+    }
 }
