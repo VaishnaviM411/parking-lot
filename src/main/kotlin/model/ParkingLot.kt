@@ -18,8 +18,7 @@ class ParkingLot(numberOfSpots: Int, private val ticketCollection: TicketCollect
     }
 
     fun park(spot: Spot): Ticket {
-        val spotInParkingLot =
-            spots.find { it.getSpotNumber() == spot.getSpotNumber() } ?: throw SpotNotFoundInParkingLotException()
+        val spotInParkingLot = getSpotInParkingLot(spot.getSpotNumber())
 
         spotInParkingLot.book(Vehicle())
 
@@ -27,11 +26,14 @@ class ParkingLot(numberOfSpots: Int, private val ticketCollection: TicketCollect
     }
 
     fun unpark(ticket: Ticket): Receipt {
-        val spotInParkingLot =
-            spots.find { it.getSpotNumber() == ticket.getSpotNumber() } ?: throw SpotNotFoundInParkingLotException()
+        val spotInParkingLot = getSpotInParkingLot(ticket.getSpotNumber())
 
         spotInParkingLot.unbook()
 
         return Receipt(ticket)
     }
+
+    private fun getSpotInParkingLot(spotNumber: Int) =
+        spots.find { it.getSpotNumber() == spotNumber } ?: throw SpotNotFoundInParkingLotException()
+
 }
