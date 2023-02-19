@@ -8,7 +8,7 @@ class Ticket(private val spotNumber: Int, private val entryDateTime: LocalDateTi
 
     fun getEntryDateTime() = entryDateTime
 
-    override fun toString():String {
+    override fun toString(): String {
         return """
             Ticket
             Spot number: $spotNumber
