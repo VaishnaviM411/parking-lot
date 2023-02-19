@@ -25,13 +25,14 @@ class TicketTest {
     fun `It should return ticket info in string format`() {
         val spotNumber = 1
         val entryDateTime = LocalDateTime.now()
+        val ticketNumber = dummyTicketCollection.getTicketNumber()
         val ticket = Ticket(spotNumber, entryDateTime, dummyTicketCollection)
 
         val response = ticket.toString()
 
         assertEquals(
             """
-            Ticket
+            Ticket number: $ticketNumber
             Spot number: $spotNumber
             Entry time: ${entryDateTime.format(DateTimeFormatter.ISO_DATE_TIME)}
         """.trimIndent(), response

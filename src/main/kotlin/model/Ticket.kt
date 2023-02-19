@@ -5,6 +5,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class Ticket(private val spotNumber: Int, private val entryDateTime: LocalDateTime = LocalDateTime.now(), ticketCollection: TicketCollection) {
+    private val ticketNumber = ticketCollection.getTicketNumber()
 
     init {
         ticketCollection.add(this)
@@ -16,7 +17,7 @@ class Ticket(private val spotNumber: Int, private val entryDateTime: LocalDateTi
 
     override fun toString(): String {
         return """
-            Ticket
+            Ticket number: $ticketNumber
             Spot number: $spotNumber
             Entry time: ${entryDateTime.format(DateTimeFormatter.ISO_DATE_TIME)}
         """.trimIndent()
