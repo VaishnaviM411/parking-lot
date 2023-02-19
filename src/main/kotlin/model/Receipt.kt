@@ -22,10 +22,10 @@ class Receipt(
 
     override fun toString(): String {
         return """
-            Receipt\n
-            Spot number: $spotNumber\n
-            Entry time: ${entryDateTime.format(DateTimeFormatter.ISO_DATE)}\n
-            Exit time: ${exitDateTime.format(DateTimeFormatter.ISO_DATE)}\n
+            Receipt
+            Spot number: $spotNumber
+            Entry time: ${entryDateTime.format(DateTimeFormatter.ISO_DATE_TIME)}
+            Exit time: ${exitDateTime.format(DateTimeFormatter.ISO_DATE_TIME)}
             Fee: $fee
         """.trimIndent()
     }

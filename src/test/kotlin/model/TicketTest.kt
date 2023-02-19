@@ -26,9 +26,9 @@ class TicketTest {
         val response = ticket.toString()
 
         assertEquals("""
-            Ticket\n
-            Spot number: $spotNumber\n
-            Entry time: ${entryDateTime.format(DateTimeFormatter.ISO_DATE)}
+            Ticket
+            Spot number: $spotNumber
+            Entry time: ${entryDateTime.format(DateTimeFormatter.ISO_DATE_TIME)}
         """.trimIndent(), response)
     }
 }

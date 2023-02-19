@@ -10,9 +10,9 @@ class Ticket(private val spotNumber: Int, private val entryDateTime: LocalDateTi
 
     override fun toString():String {
         return """
-            Ticket\n
-            Spot number: $spotNumber\n
-            Entry time: ${entryDateTime.format(DateTimeFormatter.ISO_DATE)}
+            Ticket
+            Spot number: $spotNumber
+            Entry time: ${entryDateTime.format(DateTimeFormatter.ISO_DATE_TIME)}
         """.trimIndent()
     }
 }
