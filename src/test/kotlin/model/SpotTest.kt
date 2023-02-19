@@ -1,12 +1,21 @@
 package model
 
 import error.VehicleNotFoundError
-import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
+import java.util.UUID.randomUUID
 
 class SpotTest {
+    @Test
+    fun `It should return the spot number of given spot`() {
+        val spotNumber = randomUUID()
+
+        val spot = Spot(spotNumber)
+
+        assertEquals(spotNumber, spot.getSpotNumber())
+    }
+
     @Test
     fun `It should return true if spot is available`() {
         val spot = Spot()
@@ -45,7 +54,7 @@ class SpotTest {
         spot.unbook()
 
         assertEquals(true, spot.isAvailable())
-        assertNull(spot.getVehicle())
+        assertThrows(VehicleNotFoundError::class.java) { spot.getVehicle() }
     }
 
     @Test
@@ -63,6 +72,6 @@ class SpotTest {
     fun `It should throw error if vehicle is not found at that spot`() {
         val spot = Spot()
 
-        assertThrows(VehicleNotFoundError::class.java){ spot.getVehicle() }
+        assertThrows(VehicleNotFoundError::class.java) { spot.getVehicle() }
     }
 }

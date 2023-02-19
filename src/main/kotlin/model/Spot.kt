@@ -1,11 +1,10 @@
 package model
 
 import error.VehicleNotFoundError
+import java.util.UUID
+import java.util.UUID.randomUUID
 
-var spotNumberCounter = 1
-
-class Spot {
-    private val spotNumber = spotNumberCounter++
+class Spot(private val spotNumber: UUID = randomUUID()) {
     private var vehicle: Vehicle? = null
 
     fun book(vehicle: Vehicle) {
