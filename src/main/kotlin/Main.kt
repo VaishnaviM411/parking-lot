@@ -21,18 +21,23 @@ fun main() {
                     println(ticket)
                 } catch (error: Error) {
                     println(error)
-                } catch (exception: Exception){
+                } catch (exception: Exception) {
                     println(exception)
                 }
             }
 
             2 -> {
-                println("Enter spot number: ")
-                val spotNumber = readln().toInt()
-//                val spotNumber = randomUUID()
-                val ticket = Ticket(spotNumber, LocalDateTime.now().minusHours(4))
-                val receipt = parkingLot.unpark(ticket)
-                println(receipt)
+                try {
+                    println("Enter spot number: ")
+                    val spotNumber = readln().toInt()
+                    val ticket = Ticket(spotNumber, LocalDateTime.now().minusHours(4))
+                    val receipt = parkingLot.unpark(ticket)
+                    println(receipt)
+                } catch (error: Error) {
+                    println(error)
+                } catch (exception: Exception) {
+                    println(exception)
+                }
             }
 
             else -> {
