@@ -23,7 +23,7 @@ class ParkingLot(numberOfSpots: Int) {
         val spotInParkingLot =
             spots.find { it.getSpotNumber() == ticket.getSpotNumber() } ?: throw SpotNotFoundInParkingLotException()
 
-        spotInParkingLot.unBook()
+        spotInParkingLot.unbook()
 
         return Receipt(ticket)
     }
