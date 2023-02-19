@@ -1,5 +1,6 @@
 package collection
 
+import exception.TicketNotFoundException
 import model.Ticket
 
 class TicketCollection {
@@ -9,7 +10,11 @@ class TicketCollection {
         tickets.add(ticket)
     }
 
-    fun getTicket(ticketNumber: Int) = tickets[ticketNumber]
+    fun getTicket(ticketNumber: Int) = try {
+        tickets[ticketNumber]
+    } catch (exception: Exception) {
+        throw TicketNotFoundException()
+    }
 
     fun getTicketNumber() = tickets.size
 }

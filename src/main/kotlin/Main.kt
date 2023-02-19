@@ -1,7 +1,5 @@
 import collection.TicketCollection
 import model.ParkingLot
-import model.Ticket
-import java.time.LocalDateTime
 
 fun main() {
     val ticketCollection = TicketCollection()
@@ -30,11 +28,9 @@ fun main() {
 
             2 -> {
                 try {
-                    println("Enter spot number: ")
-                    val spotNumber = readln().toInt()
-                    println("Enter entry date time")
-                    val entryDateTime = LocalDateTime.parse(readln())
-                    val ticket = Ticket(spotNumber, entryDateTime, ticketCollection)
+                    println("Enter ticket number: ")
+                    val ticketNumber = readln().toInt()
+                    val ticket = ticketCollection.getTicket(ticketNumber)
                     val receipt = parkingLot.unpark(ticket)
                     println(receipt.toString())
                 } catch (error: Error) {
