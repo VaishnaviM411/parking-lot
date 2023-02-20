@@ -9,12 +9,12 @@ fun main() {
 
     actions.forEach { println(it) }
 
-    var selectedAction = readln().toInt()
+    var selectedAction = readln()
 
-    while (selectedAction != 0) {
+    while (selectedAction != "0") {
 
         when (selectedAction) {
-            1 -> {
+            "1" -> {
                 try {
                     val spot = parkingLot.getNextAvailableSpot()
                     val ticket = parkingLot.park(spot)
@@ -26,7 +26,7 @@ fun main() {
                 }
             }
 
-            2 -> {
+            "2" -> {
                 try {
                     println("Enter ticket number: ")
                     val ticketNumber = readln().toInt()
@@ -47,7 +47,7 @@ fun main() {
 
         actions.forEach { println(it) }
 
-        selectedAction = readln().toInt()
+        selectedAction = readln()
 
     }
 }
